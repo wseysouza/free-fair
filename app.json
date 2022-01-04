@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "physicalcare",
+    "slug": "physicalcare",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "physicalcare"
+}
