@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
 
-const Logo = styled.View`
-    
+export const Logo = styled.Image`
+    position: absolute;
 `;
