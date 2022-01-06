@@ -4,13 +4,13 @@ import { Image } from 'react-native';
 import background from "../../assets/background.png";
 import logo from "../../assets/logo.png";
 
-import { Logo } from './styles';
+import { Logo, Background, Container } from './styles';
 
 export function Splash() {
     return (
-        <>
-            <Image source={background} />
+        <Container>
+            <Background source={background} />
             <Logo source={logo} />
-        </>
+        </Container>
     )
 }
