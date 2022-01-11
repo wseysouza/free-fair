@@ -14,7 +14,7 @@ export function Login() {
             <Background source={background} />
             <Content>
                 <InputRow>
-                    <MaterialCommunityIcons name="phone" />
+                    <MaterialCommunityIcons name="phone" size={25} />
                     <TextInput placeholder="Phone Number" />
                 </InputRow >
 
@@ -22,6 +22,7 @@ export function Login() {
                     <ButtonGoogle>
                         <Image source={google} />
                         <Text>Google</Text>
+
                     </ButtonGoogle>
 
                     <ButtonFacebook>
