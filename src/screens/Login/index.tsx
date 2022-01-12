@@ -1,11 +1,23 @@
 import React from "react";
-import { TextInput, Text, Image } from 'react-native';
-import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
 import background from "../../assets/background.png";
 import google from "../../assets/google.png"
 
-import { Container, Background, Content, InputRow, ButtonsRow, ButtonGoogle, ButtonFacebook } from "./styles";
+import {
+    Container,
+    Background,
+    Content,
+    Row,
+    InputRow,
+    ButtonsRow,
+    ButtonGoogle,
+    ButtonFacebook,
+    IconPhone,
+    IconFacebook,
+    ImageGoogle,
+    TextGoogle,
+    TextFacebook
+} from "./styles";
 
 
 export function Login() {
@@ -13,22 +25,20 @@ export function Login() {
         <Container>
             <Background source={background} />
             <Content>
-                <InputRow>
-                    <MaterialCommunityIcons name="phone" size={25} />
-                    <TextInput placeholder="Phone Number" />
-
-                </InputRow >
+                <Row>
+                    <IconPhone name="phone" size={30} />
+                    <InputRow placeholder="Phone Number" />
+                </Row >
 
                 <ButtonsRow>
                     <ButtonGoogle>
-                        <Image source={google} />
-                        <Text>Google</Text>
-
+                        <ImageGoogle source={google} />
+                        <TextGoogle>Google</TextGoogle>
                     </ButtonGoogle>
 
                     <ButtonFacebook>
-                        <FontAwesome name="facebook" />
-                        <Text>Facebook</Text>
+                        <IconFacebook name="facebook" size={25} />
+                        <TextFacebook>Facebook</TextFacebook>
                     </ButtonFacebook>
                 </ButtonsRow>
             </Content>
