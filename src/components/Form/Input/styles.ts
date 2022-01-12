@@ -9,18 +9,22 @@ export const Container = styled.View`
   border-radius: 6px;
   margin-bottom: 16px;
 
+  padding: 30px;
+
   flex-direction: row;
   align-items: center;
 
   justify-content: space-between;
 `;
 
-export const TextInput = styled.TextInput`
-  left: 30px;
-  line-height: 21px;
+export const InputRow = styled.View`
+  width: 100%;
+  height: 60px;
   
-  font-size: 16px; 
-  color: rgba(0, 0, 0, 0.87);
+  border-radius: 6px ;
+  
+  flex-direction: row;
+  align-items: center;  
 `;
 
 export const Icon = styled(FeatherIcon)`

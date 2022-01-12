@@ -1,13 +1,14 @@
 import React from "react";
 
-import { Input } from "../../components/Form/Input";
-import Button from    "../../components/Form/Button";
+import Button from "../../components/Form/Button";
 
 import background from "../../assets/background.png";
 
 import { Background, ButtonInfo, Container, Content } from './styles';
 
-import { Text } from "react-native";
+import { Text, TextInput } from "react-native";
+import { InputRow } from "../../components/Form/Input/styles";
+import { Input } from "../../components/Form/Input";
 
 export function SignUp() {
   return (
@@ -16,16 +17,15 @@ export function SignUp() {
       <Content>
         <Input
           name="name"
-          placeholder="Name"
+          placeholder="Name" 
         />
         <Input
           name="password"
           icon="lock"
-          placeholder="Enter OTP"
+          placeholder="Enter OTP"           
         />
-
         <ButtonInfo>
-          Resend <Text style={{fontWeight: 'bold'}}>OTP</Text>
+          Resend <Text style={{ fontWeight: 'bold' }}>OTP</Text>
         </ButtonInfo>
         <Button>
           Submit

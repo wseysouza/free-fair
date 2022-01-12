@@ -7,14 +7,12 @@ export const Container = styled(RectButton)`
   width: 90px;
   height: 50px;
 
-  margin-bottom: 31px;
-  margin-right: 20px;
   margin-left: auto;
   
   border-radius: 6px;
 
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 `;
 
 export const ButtonText = styled.Text`
