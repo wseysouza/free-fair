@@ -3,8 +3,6 @@ export default {
     {
         textWhite: '#FFFFFF',
 
-        backgroundInput: '#E5DCDC',
-
         card: '#C4C4C4',
 
         territory: '#B5B5B5',
@@ -16,6 +14,8 @@ export default {
         shape: '#403A3A',
 
         secundary: '#1E1E1E',
+
+        backgroundInput: 'rgba(0, 0, 0, 0.087)',
 
         dark: '#000000',
 
