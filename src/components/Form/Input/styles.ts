@@ -21,14 +21,14 @@ export const InputRow = styled.View`
   width: 100%;
   height: 60px;
   
-  border-radius: 6px ;
+  border-radius: 6px;
   
   flex-direction: row;
   align-items: center;  
+  justify-content: space-between;
 `;
 
 export const Icon = styled(FeatherIcon)`
-  right: 20px;
   opacity: 0.54;
   color: #5F5F5F;
 `;

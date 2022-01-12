@@ -4,10 +4,9 @@ import Button from "../../components/Form/Button";
 
 import background from "../../assets/background.png";
 
-import { Background, ButtonInfo, Container, Content } from './styles';
+import { Background, ButtonInfo, ButtonRow, Container, Content } from './styles';
 
-import { Text, TextInput } from "react-native";
-import { InputRow } from "../../components/Form/Input/styles";
+import { Text } from "react-native";
 import { Input } from "../../components/Form/Input";
 
 export function SignUp() {
@@ -20,16 +19,18 @@ export function SignUp() {
           placeholder="Name" 
         />
         <Input
-          name="password"
+          name="otp"
           icon="lock"
-          placeholder="Enter OTP"           
+          placeholder="Enter OTP"
         />
-        <ButtonInfo>
-          Resend <Text style={{ fontWeight: 'bold' }}>OTP</Text>
-        </ButtonInfo>
-        <Button>
-          Submit
-        </Button>
+        <ButtonRow>
+          <ButtonInfo>
+            Resend <Text style={{ fontWeight: 'bold' }}>OTP</Text>
+          </ButtonInfo>
+          <Button>
+            Submit
+          </Button>
+        </ButtonRow>
       </Content>
     </Container>
   )

@@ -38,7 +38,6 @@ export const ButtonInfo = styled.Text`
 
     width: 96px;
     height: 26px;
-    left: 155px;
     bottom: 41px;
 
     display: flex;
@@ -48,4 +47,12 @@ export const ButtonInfo = styled.Text`
 
     font-size: 16px;
     line-height: 26px;
+`;
+
+export const ButtonRow = styled.View`
+  width: 100%;
+    
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 `;

@@ -15,12 +15,11 @@ export function Input({ name, icon, ...rest }: InputProps) {
         <TextInput
           {...rest}
         />
+        <Icon
+          name={icon}
+          size={25}
+        />
       </InputRow>
-
-      <Icon
-        name={icon}
-        size={25}
-      />
     </Container>
   )
 }
