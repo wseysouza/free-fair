@@ -16,6 +16,7 @@ export function Login() {
                 <InputRow>
                     <MaterialCommunityIcons name="phone" size={25} />
                     <TextInput placeholder="Phone Number" />
+
                 </InputRow >
 
                 <ButtonsRow>
