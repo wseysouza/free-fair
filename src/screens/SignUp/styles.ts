@@ -20,7 +20,7 @@ export const Content = styled.View`
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     
-    background: #ffffff;
+    background: ${({ theme }) => theme.colors.backgroundForm};
     box-shadow: -5px -5px 16px rgba(0, 0, 0, 0.1);    
 `;
 
@@ -34,7 +34,7 @@ export const Background = styled.Image`
 export const ButtonInfo = styled.Text`
     position: absolute;
 
-    color: #4F4F4F;
+    color: ${({ theme }) => theme.colors.textGray};
 
     width: 96px;
     height: 26px;
@@ -44,6 +44,7 @@ export const ButtonInfo = styled.Text`
     align-items: center;
 
     font-family: ${({ theme }) => theme.fonts.regular};
+
 
     font-size: 16px;
     line-height: 26px;

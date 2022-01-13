@@ -22,13 +22,17 @@ export default {
         buttonGreen: '#6FCF97',
 
         facebook: '#3B5998',
+
+        icon: '#5F5F5F',
+
+        backgroundForm: '#FFFFFF'
     },
 
     fonts:
     {
         regular: 'Poppins_400Regular',
         medium: 'Poppins_500Medium',
-        bold: 'Poppins_700Bold',
+        bold: 'Poppins_700Bold'
     }
 
 }

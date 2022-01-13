@@ -1,13 +1,12 @@
 import React from "react";
+import { Text } from "react-native";
 
+import { Input } from "../../components/Form/Input";
 import Button from "../../components/Form/Button";
 
 import background from "../../assets/background.png";
 
 import { Background, ButtonInfo, ButtonRow, Container, Content } from './styles';
-
-import { Text } from "react-native";
-import { Input } from "../../components/Form/Input";
 
 export function SignUp() {
   return (

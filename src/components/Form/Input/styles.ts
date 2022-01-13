@@ -5,7 +5,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 export const Container = styled.View`
   width: 350px;
   height: 60px;
-  background: #f2f2f2;
+  background: ${({ theme }) => theme.colors.backgroundInput};
   border-radius: 6px;
   margin-bottom: 16px;
 
@@ -29,6 +29,5 @@ export const InputRow = styled.View`
 `;
 
 export const Icon = styled(FeatherIcon)`
-  opacity: 0.54;
-  color: #5F5F5F;
+  color: ${({ theme }) => theme.colors.icon};
 `;
