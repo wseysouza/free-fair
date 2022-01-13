@@ -3,12 +3,12 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 
 
 export const Container = styled.View`
-  width: 350px;
-  height: 60px;
   background: ${({ theme }) => theme.colors.backgroundInput};
+  
+  width: 100%;
+  height: 60px;  
   border-radius: 6px;
-  margin-bottom: 16px;
-
+  margin-bottom: 16px;  
   padding: 30px;
 
   flex-direction: row;
@@ -19,9 +19,7 @@ export const Container = styled.View`
 
 export const InputRow = styled.View`
   width: 100%;
-  height: 60px;
-  
-  border-radius: 6px;
+  height: 60px;  
   
   flex-direction: row;
   align-items: center;  
