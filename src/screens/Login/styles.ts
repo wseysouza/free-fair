@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import { Form } from '@unform/mobile';
 
 export const IconPhone = styled(MaterialCommunityIcons)`
     color: ${({ theme }) => theme.colors.textGrayLight};
@@ -46,20 +47,12 @@ export const Row = styled.View`
     flex-direction: row;
     align-items: center;
 
+    box-shadow: 10px 10px red; 
+
     border-radius: 6px ;
     background-color: ${({ theme }) => theme.colors.backgroundInput};
 `;
 
-export const InputRow = styled.TextInput`
-    width: 50%;
-    height: 60%;
-    font-size: 16px;
-    font-family: ${({ theme }) => theme.fonts.regular};
-    
-    padding-top: 5px;
-
-    margin-left: 20px;
-`;
 
 export const ButtonsRow = styled.View`
     width: 100%;
@@ -73,6 +66,7 @@ export const ButtonsRow = styled.View`
 
 export const ButtonGoogle = styled.TouchableOpacity`
     width: 160px;
+    height: 100%;
 
     border-radius: 5px;
     flex-direction: row;
@@ -81,13 +75,13 @@ export const ButtonGoogle = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
     
-    box-shadow: 5px 5px rgba(0,0,0,0.1); 
+    box-shadow: 10px 10px 10px;
 `;
 
 
 export const ButtonFacebook = styled.TouchableOpacity`
     width: 160px;
-   
+
     border-radius: 5px;
     flex-direction: row;
     background-color: ${({ theme }) => theme.colors.facebook};
@@ -107,7 +101,6 @@ export const TextGoogle = styled.Text`
     font-family: ${({ theme }) => theme.fonts.medium};
     font-size: 18px;
     color: ${({ theme }) => theme.colors.textGray};
-    
 `;
 
 export const TextFacebook = styled.Text`
@@ -116,8 +109,11 @@ export const TextFacebook = styled.Text`
     font-family: ${({ theme }) => theme.fonts.medium};
     font-size: 18px;
     color: ${({ theme }) => theme.colors.textWhite};
+`;
 
-  
+export const RowForm = styled(Form)`
+    flex-direction: row;
+    align-items: center;
 
-
+    justify-content: space-between;
 `;
