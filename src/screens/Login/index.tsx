@@ -41,7 +41,7 @@ export function Login() {
                     <RowForm ref={formRef} onSubmit={handleSubmit} >
                         <InputLogin placeholder="Phone Number" name="phone" />
                         <Button children="Send OPT" onPress={() =>
-                            formRef.current?.submitForm()} />
+                            formRef.current.submitForm()} />
                     </RowForm>
                 </Row >
 
