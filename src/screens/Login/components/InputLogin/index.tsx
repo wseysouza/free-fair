@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { TextInput } from 'react-native';
+import { View } from 'react-native';
 import { useField } from '@unform/core';
 
 import { Input } from './styles';
@@ -25,6 +25,8 @@ export function InputLogin({ name, placeholder }) {
 
 
     return (
-        <Input ref={inputRef} placeholder={placeholder} />
+        <>
+            <Input ref={inputRef} placeholder={placeholder} />
+        </>
     )
 }

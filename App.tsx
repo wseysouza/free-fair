@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import AppLoading from 'expo-app-loading';
 
+
 import {
   useFonts,
   Poppins_500Medium,
@@ -12,6 +13,8 @@ import {
 
 import theme from './src/global/styles/theme';
 import { Login } from "./src/screens/Login";
+import AppProvider from './src/hooks';
+
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -25,8 +28,9 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Login />
-
+      <AppProvider>
+        <Login />
+      </AppProvider>
     </ThemeProvider>
   )
 }
