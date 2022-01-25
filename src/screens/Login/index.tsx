@@ -25,15 +25,28 @@ import {
 
 
 export function Login() {
-    const { loginInWithGoogle } = useAuth();
 
-    // async function handleLoginInWithGoogle() {
+    const { loginInWithGoogle, loginInWithFacebook } = useAuth()
 
-    //     const test = await loginInWithGoogle();
-    //     console.log("test >>>", test);
+    async function handleLoginInWithGoogle() {
 
+        try {
+            await loginInWithGoogle();
+        } catch (error) {
+            console.log(error)
+            Alert.alert('Não foi possível conectar a conta Google')
+        }
+    }
 
-    // }
+    async function handleLoginInWithFacebook() {
+        try {
+            await loginInWithFacebook();
+        } catch (error) {
+            console.log(error)
+            Alert.alert('Não foi possível conectar a conta Facebook')
+        }
+
+    }
 
 
     const formRef = useRef(null);
@@ -58,12 +71,12 @@ export function Login() {
                 </Row >
 
                 <ButtonsRow>
-                    <ButtonGoogle onPress={() => loginInWithGoogle()}>
+                    <ButtonGoogle onPress={handleLoginInWithGoogle}>
                         <ImageGoogle source={google} />
                         <TextGoogle>Google</TextGoogle>
                     </ButtonGoogle>
 
-                    <ButtonFacebook>
+                    <ButtonFacebook onPress={handleLoginInWithFacebook}>
                         <IconFacebook name="facebook" size={25} />
                         <TextFacebook>Facebook</TextFacebook>
                     </ButtonFacebook>

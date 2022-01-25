@@ -2,7 +2,7 @@
   "expo": {
     "name": "physicalcare",
     "slug": "physicalcare",
-    "schema": "physicalcare",
+    "scheme": "physicalcare",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
