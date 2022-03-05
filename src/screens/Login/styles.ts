@@ -61,8 +61,12 @@ export const ButtonsRow = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
 `;
 
+export const GoogleView = styled.View`
+    box-shadow:10px 5px 5px red;
+`;
 
 export const ButtonGoogle = styled.TouchableOpacity`
     width: 160px;
@@ -75,8 +79,10 @@ export const ButtonGoogle = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
     
-    box-shadow: 10px 10px 10px;
+    box-shadow: 100px 50px 50px black;
 `;
+
+
 
 
 export const ButtonFacebook = styled.TouchableOpacity`

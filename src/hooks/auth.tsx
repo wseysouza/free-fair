@@ -20,7 +20,7 @@ interface User {
 interface IAuthContextData {
   user: User;
   loginInWithGoogle(): Promise<void>;
-  // loginInWithFacebook(): Promise<void>;
+  loginInWithFacebook(): Promise<void>;
   logout(): void;
 }
 
@@ -37,7 +37,7 @@ const AuthContext = createContext({} as IAuthContextData)
 
 function AuthProvider({ children }: AuthProviderProps) {
 
-  const [user, setUser] = useState<User>(null);
+  const [user, setUser] = useState<User>({} as User);
 
   async function loginInWithGoogle() {
     try {
@@ -66,35 +66,42 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+
   async function logout() {
     setUser(null);
   }
 
-  // async function loginInWithFacebook() {
-  //     try {
 
-  //         await Facebook.initializeAsync({
-  //             appId: '<APP_ID>',
-  //         });
-  //         const {
-  //             type,
-  //             token,
+  async function loginInWithFacebook() {
+    try {
 
-  //         } = await Facebook.logInWithReadPermissionsAsync({
-  //             permissions: ['public_profile', 'email'],
-  //         });
-  //         if (type === 'success') {
-  //             // Get the user's name using Facebook's Graph API
-  //             const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-  //             Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-  //         } else {
-  //             // type === 'cancel'
-  //         }
+      await Facebook.initializeAsync({
+        appId: '1601240570213053',
+      });
+      const res = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['public_profile', 'email'],
+      });
 
-  //     } catch (error) {
-  //         throw new Error(error);
-  //     }
-  // }
+      const { type } = res;
+
+      console.log('res >> ', res)
+
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(`https://graph.facebook.com/me?fields=id,name,picture.type(large),email&access_token=${token}`);
+        const data = await response.json();
+
+        console.log(data)
+
+        setUser(data)
+      } else {
+        // type === 'cancel'
+      }
+
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
 
 
@@ -102,7 +109,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     <AuthContext.Provider value={{
       user,
       loginInWithGoogle,
-      // loginInWithFacebook
+      loginInWithFacebook,
       logout,
     }}>
       {children}

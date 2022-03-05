@@ -2,9 +2,40 @@ import 'styled-components';
 import theme from './theme';
 
 declare module 'styled-components' {
-    type ThemeType = typeof theme
+    export interface DefaultTheme {
+        colors: {
+            textWhite: string,
 
-    export interface DefaultTheme extends ThemeType {
+            card: string,
 
+            territory: string,
+
+            textGray: string,
+
+            textGrayLight: string,
+
+            shape: string,
+
+            secundary: string,
+
+            backgroundInput: string,
+
+            dark: string,
+
+            buttonGreen: string,
+
+            facebook: string,
+
+            icon: string,
+
+            backgroundForm: string
+        },
+
+        fonts: {
+            regular: string,
+            medium: string,
+            bold: string
+        }
     }
+
 }

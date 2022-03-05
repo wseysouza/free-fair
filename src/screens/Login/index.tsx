@@ -20,13 +20,14 @@ import {
     ImageGoogle,
     TextGoogle,
     TextFacebook,
-    RowForm
+    RowForm,
+    GoogleView
 } from "./styles";
 
 
 export function Login() {
 
-    const { loginInWithGoogle /*loginInWithFacebook*/ } = useAuth()
+    const { loginInWithGoogle, loginInWithFacebook } = useAuth()
 
     async function handleLoginInWithGoogle() {
 
@@ -40,7 +41,7 @@ export function Login() {
 
     async function handleLoginInWithFacebook() {
         try {
-            // await loginInWithFacebook();
+            await loginInWithFacebook();
         } catch (error) {
             console.log(error)
             Alert.alert('Não foi possível conectar a conta Facebook')
@@ -71,10 +72,12 @@ export function Login() {
                 </Row >
 
                 <ButtonsRow>
-                    <ButtonGoogle onPress={handleLoginInWithGoogle}>
-                        <ImageGoogle source={google} />
-                        <TextGoogle>Google</TextGoogle>
-                    </ButtonGoogle>
+                    <GoogleView>
+                        <ButtonGoogle onPress={handleLoginInWithGoogle}>
+                            <ImageGoogle source={google} />
+                            <TextGoogle>Google</TextGoogle>
+                        </ButtonGoogle>
+                    </GoogleView>
 
                     <ButtonFacebook onPress={handleLoginInWithFacebook}>
                         <IconFacebook name="facebook" size={25} />
