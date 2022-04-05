@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "physicalcare",
-    "slug": "physicalcare",
-    "scheme": "physicalcare",
+    "name": "free-fair",
+    "slug": "free-fair",
+    "scheme": "free-fair",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "physicalcare"
+  "name": "free-fair"
 }
