@@ -15,12 +15,13 @@ export const ContentTop = styled.Text`
 
 `;
 
-export const ContentCenter = styled.Text`
-    font-size: 35px;
+export const ContentCenter = styled.View`
+    align-items: center;
+`;
 
+export const RowTextFair = styled.Text`
+    font-size: 30px;
     color: ${({ theme }) => theme.colors.textWhite};
-    
-
 `;
 
 export const ContentBottom = styled.Text`
@@ -35,7 +36,7 @@ export const ContentBottom = styled.Text`
 export const BackgroundTop = styled.View`
     width: 421px;
     height: 85%;
-    background: #5636D3;
+    background: #90CDF4;
 
     padding: 75px 35px 35px 35px; 
     justify-content: space-around;
@@ -45,7 +46,7 @@ export const BackgroundTop = styled.View`
 export const BackgroundBottom = styled.View`
     width: 100%;
     height: 15%;
-    background: #FF872C;
+    background: #68D391;
     padding: 30px;
     position: relative;
     align-items: center;

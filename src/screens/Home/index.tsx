@@ -1,16 +1,80 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useAuth } from '../../hooks/auth';
-import { Wrapper, ButtonReturn } from "./styles";
-import { Text } from 'react-native'
+import * as S from "./styles";
+import { Text, FlatList } from 'react-native'
+import data from "./data.json";
+
+import SelectDropdown from 'react-native-select-dropdown';
+import Logo from "../../assets/imagem-de-frutas.jpg";
+
+
+
 
 export function Home() {
-  const { logout } = useAuth()
+  const [selectDropdom, setSelectDropdom] = useState("")
 
   return (
-    <Wrapper>
-      <ButtonReturn onPress={logout} >
-        <Text>Sair</Text>
-      </ButtonReturn>
-    </Wrapper>
+    <S.Wrapper>
+
+      <SelectDropdown
+        defaultButtonText="Selecione sua cidade"
+        defaultValue="Selecione"
+        rowStyle={{ height: 80 }}
+        dropdownStyle={{ width: '83%' }}
+        buttonStyle={{ width: '100%', borderColor: 'gray', borderWidth: 1, borderRadius: 5, marginBottom: 25 }}
+        buttonTextStyle={{ color: "green" }}
+        dropdownIconPosition="right"
+
+        data={data}
+        onSelect={(selectedItem, index) => {
+          // console.log(selectedItem, index)
+        }}
+        buttonTextAfterSelection={(selectedItem, index) => {
+          // text represented after item is selected
+          // if data array is an array of objects then return selectedItem.property to render after item is selected
+          setSelectDropdom(selectedItem.cidade)
+          return selectedItem.cidade
+        }}
+        rowTextForSelection={(item, index) => {
+          // text represented for each item in dropdown
+          // if data array is an array of objects then return item.property to represent item in dropdown
+
+
+          return item.cidade
+        }}
+      />
+
+      {selectDropdom.length > 1 && <S.Title>{`Feiras Cadastradas em ${selectDropdom}`}</S.Title>}
+
+      {selectDropdom ? (
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item?.id.toString()}
+          renderItem={({ item, index }) =>
+            item.cidade === selectDropdom && (
+
+              <S.Item>
+                <S.Logo source={Logo} />
+                <Text>{item.nome}</Text>
+              </S.Item>
+
+            )
+          }
+        />
+      ) : (
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item?.id.toString()}
+          renderItem={({ item, index }) =>
+            item && (
+              <S.Item>
+                <S.Logo source={Logo} />
+                <Text>{item.nome}</Text>
+              </S.Item>
+            )
+          }
+        />)}
+
+    </S.Wrapper>
   )
 }

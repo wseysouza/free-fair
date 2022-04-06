@@ -2,12 +2,14 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { createStackNavigator } from '@react-navigation/stack';
 
 import { useTheme } from 'styled-components';
 import { Home } from '../screens/Home';
 import { Splash } from "../../src/screens/Splash";
+import { Most } from "../../src/screens/Most";
 
 
 
@@ -34,8 +36,23 @@ const AuthRoutes = () => {
                 }}
             />
             <AppRoutes.Screen
-                name="Splash"
+                name="Cadastrar Feira"
                 component={Splash}
+                options={{
+                    tabBarIcon: (({ size, color }) => (
+                        <MaterialCommunityIcons
+                            name="tag-plus-outline"
+                            size={size}
+                            color={color}
+                        />
+                    ))
+                }}
+            />
+
+
+            <AppRoutes.Screen
+                name="Mais"
+                component={Most}
                 options={{
                     tabBarIcon: (({ size, color }) => (
                         <MaterialIcons

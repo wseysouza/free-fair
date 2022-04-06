@@ -1,23 +1,12 @@
 import React, { useCallback, useRef } from "react";
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 
-// import background from "../../assets/imagem-de-frutas.jpg";
 import google from "../../assets/google.png";
-import Button from '../../components/Form/Button';
-import { InputLogin } from './components/InputLogin';
 import { useAuth } from '../../hooks/auth';
 
-import {
-    Container,
-    BackgroundTop,
-    BackgroundBottom,
-    ButtonGoogle,
-    ImageGoogle,
-    TextGoogle,
-    ContentTop,
-    ContentCenter,
-    ContentBottom
-} from "./styles";
+import { FontAwesome5 } from '@expo/vector-icons';
+
+import * as S from "./styles";
 
 
 export function Login() {
@@ -34,18 +23,21 @@ export function Login() {
     }
 
     return (
-        <Container>
-            <BackgroundTop >
-                <ContentTop>Feira Livre</ContentTop>
-                <ContentCenter>Seu App de Feiras</ContentCenter>
-                <ContentBottom>Faça seu login com uma das contas abaixo</ContentBottom>
-            </BackgroundTop >
-            <BackgroundBottom>
-                <ButtonGoogle onPress={handleLoginInWithGoogle}>
-                    <ImageGoogle source={google} />
-                    <TextGoogle>Entrar com Google</TextGoogle>
-                </ButtonGoogle>
-            </BackgroundBottom>
-        </Container >
+        <S.Container>
+            <S.BackgroundTop >
+                <S.ContentTop>Feira Livre</S.ContentTop>
+                <S.ContentCenter>
+                    <FontAwesome5 name="store" size={50} color="white" />
+                    <S.RowTextFair>Seu App de Feiras</S.RowTextFair>
+                </S.ContentCenter>
+                <S.ContentBottom>Faça seu login com uma das contas abaixo</S.ContentBottom>
+            </S.BackgroundTop >
+            <S.BackgroundBottom>
+                <S.ButtonGoogle onPress={handleLoginInWithGoogle}>
+                    <S.ImageGoogle source={google} />
+                    <S.TextGoogle>Entrar com Google</S.TextGoogle>
+                </S.ButtonGoogle>
+            </S.BackgroundBottom>
+        </S.Container >
     )
 }
