@@ -25,7 +25,7 @@ export function Login() {
     return (
         <S.Container>
             <S.BackgroundTop >
-                <S.ContentTop>Feira Livre</S.ContentTop>
+                <S.ContentTop>Hoje tem Feira</S.ContentTop>
                 <S.ContentCenter>
                     <FontAwesome5 name="store" size={50} color="white" />
                     <S.RowTextFair>Seu App de Feiras</S.RowTextFair>

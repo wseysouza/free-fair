@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 
 
 export const Wrapper = styled.View`
+    flex: 1;
     width: 100%;
     height: 100%;
     padding-top: 50px;
@@ -37,4 +38,22 @@ export const Title = styled.Text`
     line-height: 25px;
     margin-top: 15px;
     margin-bottom: 15px;
+`;
+
+
+
+export const ColumContent = styled.View`
+   width: 87%;
+   display: flex;
+   flex-direction: column;
+`;
+
+export const TitleContent = styled.Text`
+    font-size: 14px;
+    font-weight: bold;
+`;
+
+export const Content = styled.Text`
+    width: 100%;
+    font-size: 14px;
 `;

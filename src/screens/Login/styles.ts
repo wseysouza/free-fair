@@ -12,6 +12,7 @@ export const Container = styled.View`
 export const ContentTop = styled.Text`
     font-size: 25px;
     color: ${({ theme }) => theme.colors.textWhite};
+    font-weight: bold;
 
 `;
 
@@ -80,5 +81,4 @@ export const TextGoogle = styled.Text`
     font-size: 18px;
     color: ${({ theme }) => theme.colors.textGray};
 `;
-
 

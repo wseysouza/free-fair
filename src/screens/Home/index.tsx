@@ -5,7 +5,7 @@ import { Text, FlatList } from 'react-native'
 import data from "./data.json";
 
 import SelectDropdown from 'react-native-select-dropdown';
-import Logo from "../../assets/imagem-de-frutas.jpg";
+import Logo from "../../assets/imagemFrutas.png";
 
 
 
@@ -17,12 +17,12 @@ export function Home() {
     <S.Wrapper>
 
       <SelectDropdown
-        defaultButtonText="Selecione sua cidade"
+        defaultButtonText="Clique para selecionar sua cidade"
         defaultValue="Selecione"
         rowStyle={{ height: 80 }}
         dropdownStyle={{ width: '83%' }}
         buttonStyle={{ width: '100%', borderColor: 'gray', borderWidth: 1, borderRadius: 5, marginBottom: 25 }}
-        buttonTextStyle={{ color: "green" }}
+        buttonTextStyle={{ color: "#2B6CB0" }}
         dropdownIconPosition="right"
 
         data={data}
@@ -52,10 +52,12 @@ export function Home() {
           keyExtractor={(item) => item?.id.toString()}
           renderItem={({ item, index }) =>
             item.cidade === selectDropdom && (
-
               <S.Item>
                 <S.Logo source={Logo} />
-                <Text>{item.nome}</Text>
+                <S.ColumContent>
+                  <S.TitleContent>{item.nome}</S.TitleContent>
+                  <S.Content>{`Endereço: ${item.endereco}`}</S.Content>
+                </S.ColumContent>
               </S.Item>
 
             )
@@ -69,7 +71,10 @@ export function Home() {
             item && (
               <S.Item>
                 <S.Logo source={Logo} />
-                <Text>{item.nome}</Text>
+                <S.ColumContent>
+                  <S.TitleContent>{item.nome}</S.TitleContent>
+                  <S.Content>{`Endereço: ${item.endereco}`}</S.Content>
+                </S.ColumContent>
               </S.Item>
             )
           }
