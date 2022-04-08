@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, FlatList } from 'react-native'
+import { Text } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -7,17 +7,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { useTheme } from 'styled-components';
 import { Home } from '../screens/Home';
-import { Splash } from "../../src/screens/Splash";
+import { RegisterFair } from "../screens/RegisterFair";
 import { Most } from "../../src/screens/Most";
-import { Background } from '../screens/Splash/styles';
-
-
 
 const AppRoutes = createBottomTabNavigator();
 
 const AuthRoutes = () => {
-    const theme = useTheme();
 
+    const theme = useTheme();
 
     return (
         <AppRoutes.Navigator
@@ -42,7 +39,7 @@ const AuthRoutes = () => {
             />
             <AppRoutes.Screen
                 name="Cadastrar Feira"
-                component={Splash}
+                component={RegisterFair}
                 options={{
                     tabBarLabel: (({ color, focused }) => (
                         <Text style={{ color: focused ? '#68D391' : color, fontSize: 11 }} >Cadastrar Feira</Text>

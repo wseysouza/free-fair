@@ -1,10 +1,8 @@
 import React from "react";
-import { Image, TextInput } from 'react-native';
-
 
 import * as S from './styles';
 
-export function Splash() {
+export function RegisterFair() {
     return (
         <S.Container>
             <S.Wrapper>

@@ -3,12 +3,9 @@ import styled from "styled-components/native";
 export const Container = styled.ScrollView`
     width: 100%;
     height: 100%; 
-       
     padding: 25px ;
     flex: 1;
 `;
-
-
 
 export const Background = styled.Image`
     width: 421px;
@@ -24,7 +21,6 @@ export const ContenInput = styled.TextInput`
     border-Width: 1px;
     padding: 10px;
     border-radius: 6px;
-
     background-color: ${({ theme }) => theme.colors.backgroundInput};;
 `;
 
@@ -39,7 +35,6 @@ export const Wrapper = styled.View`
     width: 100%;
     margin-bottom: 30px;
 `;
-
 
 export const ButtonForm = styled.Button`
     width: 100%;
