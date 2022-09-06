@@ -7,21 +7,15 @@ import { useAuth } from '../../hooks/auth';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 import * as S from "./styles";
-import { Input } from "./components/Input";
-
-import { useForm } from 'react-hook-form';
-import { Button } from "./components/Button";
 
 
 export function Login() {
 
-    const { loginUser } = useAuth()
+    const { loginInWithGoogle } = useAuth()
 
-    const { control, handleSubmit, resetField, getValues } = useForm()
-
-    const onSubmit = async (data) => {
+    async function handleLoginInWithGoogle() {
         try {
-            await loginUser(data);
+            await loginInWithGoogle();
         } catch (error) {
             console.log("test", error)
             Alert.alert('Não foi possível conectar a conta Google')
@@ -36,20 +30,14 @@ export function Login() {
                     <FontAwesome5 name="store" size={50} color="white" />
                     <S.RowTextFair>Seu App de Feiras</S.RowTextFair>
                 </S.ContentCenter>
-                <S.ContentBottom>Faça seu login:</S.ContentBottom>
+                <S.ContentBottom>Faça seu login com uma das contas abaixo</S.ContentBottom>
             </S.BackgroundTop >
             <S.BackgroundBottom>
-                <S.Form>
-                    <Input name={"Email"} placeholder={"Email"} control={control} />
-                    <Input name={"Senha"} placeholder={"Senha"} control={control} />
-                    <Button title="Entrar" onPress={handleSubmit(onSubmit)} />
-                </S.Form>
-                {/* <S.ButtonGoogle onPress={handleLoginInWithGoogle}>
+                <S.ButtonGoogle onPress={handleLoginInWithGoogle}>
                     <S.ImageGoogle source={google} />
                     <S.TextGoogle>Entrar com Google</S.TextGoogle>
-                </S.ButtonGoogle> */}
+                </S.ButtonGoogle>
             </S.BackgroundBottom>
-
         </S.Container >
     )
 }

@@ -6,7 +6,10 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.wsey.freefair"
+    }
   },
   "name": "free-fair"
 }

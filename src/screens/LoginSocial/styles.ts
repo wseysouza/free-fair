@@ -26,40 +26,59 @@ export const RowTextFair = styled.Text`
 `;
 
 export const ContentBottom = styled.Text`
-    font-size: 20px;
+    font-size: 16px;
     color: ${({ theme }) => theme.colors.textWhite};
-
+    width: 190px;
+    text-align: center;
     line-height: 24px;
 `;
 
 
 export const BackgroundTop = styled.View`
-    width: 100%;
-    height: 65%;
+    width: 421px;
+    height: 85%;
     background: #90CDF4;
 
-    padding: 115px 35px 0 35px; 
+    padding: 75px 35px 35px 35px; 
     justify-content: space-around;
     align-items: center;
 `;
 
 export const BackgroundBottom = styled.View`
     width: 100%;
-    height: 35%;
+    height: 15%;
     background: #68D391;
     padding: 30px;
+    position: relative;
     align-items: center;
 `;
 
 
-export const Form = styled.View`
+export const ButtonGoogle = styled.TouchableOpacity`
     width: 100%;
-   
+    height: 60px;
+
     border-radius: 5px;
+    flex-direction: row;
+    background-color: ${({ theme }) => theme.colors.textWhite};
     
     justify-content: center;
     align-items: center;
-    
+    position: absolute;
+    bottom: 100px;
+
 `;
 
+export const ImageGoogle = styled.Image`
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+`;
+
+export const TextGoogle = styled.Text`
+    height: 30px;
+    font-family: ${({ theme }) => theme.fonts.medium};
+    font-size: 18px;
+    color: ${({ theme }) => theme.colors.textGray};
+`;
 
