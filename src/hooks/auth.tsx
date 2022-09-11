@@ -1,4 +1,6 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
+import { Alert } from 'react-native';
+
 
 import tab from "../data/index.json";
 
@@ -15,6 +17,7 @@ interface User {
 }
 
 interface IAuthContextData {
+  userInvalid: boolean;
   user: User;
   loginUser: (data: object) => void;
   logout(): void;
@@ -34,12 +37,13 @@ const AuthContext = createContext({} as IAuthContextData)
 function AuthProvider({ children }: AuthProviderProps) {
 
   const [user, setUser] = useState<User>({} as User);
+  const [userInvalid, setUserInvalid] = useState(false);
 
 
   async function loginUser(data: { email: string, password: string }) {
     try {
       tab.map((item) => {
-        if (item.email === data.email && item.password === data.password) {
+        if (item.email.toLowerCase === data.email.toLowerCase && item.password === data.password) {
           setUser({
             id: item.id,
             email: item.email,
@@ -47,8 +51,12 @@ function AuthProvider({ children }: AuthProviderProps) {
             name: item.name,
             photo: item.photo,
           });
+          setUserInvalid(false)
+        } else {
+          setUserInvalid(true)
         }
       })
+
     } catch (error) {
 
     }
@@ -61,6 +69,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   return (
     <AuthContext.Provider value={{
+      userInvalid,
       user,
       loginUser,
       logout,

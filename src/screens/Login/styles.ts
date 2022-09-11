@@ -4,62 +4,68 @@ import styled from "styled-components/native";
 export const Container = styled.View`
     width: 100%;
     height: 100%;
-
-    position: relative;
 `;
 
 
 export const ContentTop = styled.Text`
-    font-size: 25px;
+    font-family: ${({ theme }) => theme.fonts.medium};
+    font-size: 21px;
     color: ${({ theme }) => theme.colors.textWhite};
-    font-weight: bold;
-
-`;
-
-export const ContentCenter = styled.View`
-    align-items: center;
+    
 `;
 
 export const RowTextFair = styled.Text`
-    font-size: 30px;
+font-family: ${({ theme }) => theme.fonts.medium};
+    font-size: 20px;
     color: ${({ theme }) => theme.colors.textWhite};
+    
 `;
 
 export const ContentBottom = styled.Text`
-    font-size: 20px;
     color: ${({ theme }) => theme.colors.textWhite};
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-family: ${({ theme }) => theme.fonts.medium};
 
-    line-height: 24px;
+   
+    
 `;
 
 
 export const BackgroundTop = styled.View`
     width: 100%;
-    height: 65%;
+    height: 300px;
     background: #90CDF4;
 
-    padding: 115px 35px 0 35px; 
-    justify-content: space-around;
+    padding: 80px 35px 38px 35px; 
+    justify-content: space-between;
     align-items: center;
 `;
 
 export const BackgroundBottom = styled.View`
+    border-radius: 50px;
     width: 100%;
-    height: 35%;
+    height: 100%;
     background: #68D391;
-    padding: 30px;
+    padding: 30px 40px ;
     align-items: center;
+    bottom: 40px;
 `;
 
 
 export const Form = styled.View`
     width: 100%;
+  
    
-    border-radius: 5px;
-    
-    justify-content: center;
-    align-items: center;
+   
     
 `;
+
+export const TextUserInvalid = styled.Text`
+    font-size: 16px;
+    color: ${({ theme }) => theme.colors.textGray};
+    font-family: ${({ theme }) => theme.fonts.medium};
+    margin-bottom: 20px;
+`
 
 
