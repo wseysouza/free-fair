@@ -5,9 +5,8 @@ export const Wrapper = styled.View`
     flex: 1;
     width: 100%;
     height: 100%;
-    padding-top: 50px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 10px 15px;
+   
 `;
 
 export const Logo = styled.Image`
@@ -20,7 +19,7 @@ export const Logo = styled.Image`
 
 export const Item = styled.View`
     width: 100%;
-    height: 80px;
+    
 
     flex-direction: row;
     align-items:center ;
@@ -41,11 +40,11 @@ export const Title = styled.Text`
 `;
 
 
-
 export const ColumContent = styled.View`
-   width: 87%;
+   width: 60%;
    display: flex;
    flex-direction: column;
+   margin-right: 10px;
 `;
 
 export const TitleContent = styled.Text`

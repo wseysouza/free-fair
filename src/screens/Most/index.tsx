@@ -1,22 +1,18 @@
 // import react, { Text, View } from 'react-native';
+import React from 'react';
 import { useAuth } from '../../hooks/auth';
-import { Wrapper, ButtonReturn, ExitText, BorderView } from "./styles";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Wrapper } from "./styles";
+import { Buttons } from "./components"
+import { StackHeaderProps } from '@react-navigation/stack';
 
+export function Most({ navigation }: StackHeaderProps) {
 
-export function Most() {
+  const { logout } = useAuth();
 
-    const { logout } = useAuth()
-
-    return (
-        <Wrapper>
-            <BorderView>
-                <ButtonReturn onPress={logout} >
-                    <MaterialCommunityIcons name="exit-run" size={24} color="black" />
-                    <ExitText>Sair</ExitText>
-                </ButtonReturn>
-            </BorderView>
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <Buttons Title='Sair' TypeIcon='exit' onPress={logout} />
+    </Wrapper>
+  )
 
 }
