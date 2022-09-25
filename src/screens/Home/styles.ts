@@ -20,7 +20,6 @@ export const Logo = styled.Image`
 
 export const Item = styled.View`
     width: 100%;
-    height: 80px;
 
     flex-direction: row;
     align-items:center ;

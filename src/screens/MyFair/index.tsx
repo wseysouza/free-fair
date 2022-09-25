@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, FlatList } from 'react-native'
+import { Alert, FlatList, Modal } from 'react-native'
 import { StackHeaderProps } from "@react-navigation/stack"
 import Logo from "../../assets/imagemFrutas.png";
 import { AntDesign } from '@expo/vector-icons';
@@ -11,6 +11,7 @@ import * as S from "./styles";
 
 export function MyFair({ navigation }: StackHeaderProps) {
   const [newData, setNewData] = useState([])
+  const [modalVisible, setModalVisible] = useState(false);
 
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export function MyFair({ navigation }: StackHeaderProps) {
         },
         {
           text: "Editar",
-          onPress: () => console.log("OK Pressed")
+          onPress: () => setModalVisible(!modalVisible)
         }
       ]
     )
@@ -56,6 +57,51 @@ export function MyFair({ navigation }: StackHeaderProps) {
 
   return (
     <S.Wrapper>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        statusBarTranslucent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <S.ConteinerModal>
+
+          <S.ContentModal>
+            <S.RowClosed>
+              <AntDesign name="close" size={30} color="black" onPress={() => setModalVisible(!modalVisible)} />
+            </S.RowClosed>
+            <S.WrapperModal>
+              <S.ContentText>Nome da Feira</S.ContentText>
+              <S.ContenInput />
+            </S.WrapperModal>
+            <S.WrapperModal>
+              <S.ContentText>Cidade</S.ContentText>
+              <S.ContenInput />
+            </S.WrapperModal>
+            <S.WrapperModal>
+              <S.ContentText>Endereço</S.ContentText>
+              <S.ContenInput />
+            </S.WrapperModal>
+            <S.WrapperModal>
+              <S.ContentText>Telefone</S.ContentText>
+              <S.ContenInput />
+            </S.WrapperModal>
+            <S.WrapperModal>
+              <S.ContentText>Horario de Atendimento</S.ContentText>
+              <S.ContenInput />
+            </S.WrapperModal>
+            <S.WrapperModal>
+              <S.ButtonForm title="Editar" />
+            </S.WrapperModal>
+
+          </S.ContentModal>
+        </S.ConteinerModal>
+
+      </Modal>
+
       <FlatList
         data={newData}
         keyExtractor={(item) => item?.id.toString()}
