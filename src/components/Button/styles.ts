@@ -4,7 +4,7 @@ interface ColorProps {
     color: string;
 }
 
-export const Container = styled.TouchableOpacity<ColorProps>`
+export const Container = styled.Pressable<ColorProps>`
     width: 100%;
     height: 55px;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useAuth } from '../../hooks/auth';
 
@@ -16,16 +16,18 @@ import { StackHeaderProps } from '@react-navigation/stack';
 
 
 export function Login({ navigation }: StackHeaderProps) {
-
     const { loginUser, userInvalid } = useAuth()
-
     const { control, handleSubmit, resetField, getValues } = useForm()
+    const [loading, setLoading] = useState(false)
 
     const onSubmit = async (data: {}) => {
+        setLoading(true)
         try {
             await loginUser(data);
+            setLoading(false)
         } catch (error) {
             console.log("test", error)
+            setLoading(false)
         }
     }
 
@@ -44,7 +46,7 @@ export function Login({ navigation }: StackHeaderProps) {
                     <Input name={"email"} placeholder={"Email"} control={control} />
                     <Input name={"password"} placeholder={"Senha"} control={control} secureTextEntry />
                     {userInvalid && <S.TextUserInvalid>*Email ou senha incorreto</S.TextUserInvalid>}
-                    <Button title="Entrar" onPress={handleSubmit(onSubmit)} color={theme.colors.dark} />
+                    <Button title={loading ? "Carregando..." : "Entrar"} onPress={handleSubmit(onSubmit)} color={theme.colors.dark} disabled={loading} />
                     <Button title="Não tenho uma conta" onPress={() => navigation.navigate("UserRegister")} color={theme.colors.facebook} />
                 </S.Form>
             </S.BackgroundBottom>

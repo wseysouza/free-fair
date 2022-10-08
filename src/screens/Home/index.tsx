@@ -1,17 +1,29 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useAuth } from '../../hooks/auth';
 import * as S from "./styles";
-import { Text, FlatList } from 'react-native'
+import { RefreshControl, FlatList } from 'react-native'
 import data from "./data.json";
 
 import SelectDropdown from 'react-native-select-dropdown';
 import Logo from "../../assets/imagemFrutas.png";
 
-
-
-
 export function Home() {
   const [selectDropdom, setSelectDropdom] = useState("")
+  const { Get_MyFair, myFair } = useAuth()
+  const [refreshing, setRefreshing] = useState(false)
+
+  useEffect(() => {
+    Get_MyFair()
+  }, [])
+
+  const handleRefresh = () => {
+    console.log("EU")
+    setSelectDropdom("")
+    setRefreshing(true)
+    //Get_MyFair()
+
+    setRefreshing(false)
+  }
 
   return (
     <S.Wrapper>
@@ -25,7 +37,7 @@ export function Home() {
         buttonTextStyle={{ color: "#2B6CB0" }}
         dropdownIconPosition="right"
 
-        data={data}
+        data={myFair}
         onSelect={(selectedItem, index) => {
           // console.log(selectedItem, index)
         }}
@@ -48,14 +60,20 @@ export function Home() {
 
       {selectDropdom ? (
         <FlatList
-          data={data}
-          keyExtractor={(item) => item?.id.toString()}
+          data={myFair}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+            />
+          }
+          keyExtractor={(item) => item?.objectId.toString()}
           renderItem={({ item, index }) =>
             item.cidade === selectDropdom && (
               <S.Item>
                 <S.Logo source={Logo} />
                 <S.ColumContent>
-                  <S.TitleContent>{item.nome}</S.TitleContent>
+                  <S.TitleContent>{item.name}</S.TitleContent>
                   <S.Content>{`Endereço: ${item.endereco}`}</S.Content>
                 </S.ColumContent>
               </S.Item>
@@ -65,14 +83,20 @@ export function Home() {
         />
       ) : (
         <FlatList
-          data={data}
-          keyExtractor={(item) => item?.id.toString()}
+          data={myFair}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+            />
+          }
+          keyExtractor={(item) => item?.objectId.toString()}
           renderItem={({ item, index }) =>
             item && (
               <S.Item>
                 <S.Logo source={Logo} />
                 <S.ColumContent>
-                  <S.TitleContent>{item.nome}</S.TitleContent>
+                  <S.TitleContent>{item.name}</S.TitleContent>
                   <S.Content>{`Endereço: ${item.endereco}`}</S.Content>
                 </S.ColumContent>
               </S.Item>
