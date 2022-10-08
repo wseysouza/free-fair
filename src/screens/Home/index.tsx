@@ -8,12 +8,14 @@ import Logo from "../../assets/imagemFrutas.png";
 
 export function Home() {
   const [selectDropdom, setSelectDropdom] = useState("")
-  const { Get_MyFair, myFair } = useAuth()
+  const { Get_MyFair, myFair, user } = useAuth()
   const [refreshing, setRefreshing] = useState(false)
 
   useEffect(() => {
     Get_MyFair()
   }, [])
+
+  console.log(user)
 
   const handleRefresh = () => {
     setSelectDropdom("")

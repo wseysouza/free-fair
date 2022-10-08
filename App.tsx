@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import AppLoading from 'expo-app-loading';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 import {
@@ -19,6 +20,7 @@ import { Routes } from './src/routes'
 
 export default function App() {
 
+  //AsyncStorage.clear()
 
   const [fontLoaded] = useFonts({
     Poppins_400Regular,

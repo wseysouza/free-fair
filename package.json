@@ -13,7 +13,7 @@
     "@expo-google-fonts/roboto": "^0.2.0",
     "@expo/vector-icons": "^12.0.5",
     "@parse/react-native": "^0.0.1-alpha.18",
-    "@react-native-async-storage/async-storage": "^1.17.10",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/picker": "^1.8.1",
     "@react-native-picker/picker": "2.2.1",
     "@react-navigation/bottom-tabs": "^6.0.9",
