@@ -20,6 +20,8 @@ export function MyFair({ navigation }: StackHeaderProps) {
   })
 
 
+
+
   useEffect(() => {
     Get_MyFair();
   }, [])
@@ -37,21 +39,7 @@ export function MyFair({ navigation }: StackHeaderProps) {
       }
     })
     setIdFair(id)
-    Alert.alert(
-      "Editar Feira",
-      "Tem certeza que deseja editar?",
-      [
-        {
-          text: "Cancelar",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        {
-          text: "Editar",
-          onPress: () => setModalVisible(true)
-        }
-      ]
-    )
+    setModalVisible(true)
   }
 
   const deleteFair = (id) => {
@@ -97,8 +85,8 @@ export function MyFair({ navigation }: StackHeaderProps) {
   }
 
   return (
-    <S.Wrapper>
-      {myFair.length > 0 ? (
+    myFair !== null && myFair.length > 0 ? (
+      <S.Wrapper>
         <FlatList
           data={myFair}
           keyExtractor={(item) => item?.objectId.toString()}
@@ -114,62 +102,61 @@ export function MyFair({ navigation }: StackHeaderProps) {
             </S.Item>
           }
         />
-      ) : (
-        // myFair.length !== 0 ?
-        //   (
-        //     <View style={{ flex: 1, justifyContent: "center" }}>
-        //       <Text>Nenhuma Feira Cadastra</Text>
-        //     </View>
-        //   ) : (
-        <View style={{ flex: 1, justifyContent: "center" }}>
-          <ActivityIndicator size="large" color="##68D391" />
-        </View>
-        // )
-      )}
-      <Modal
-        animationType="slide"
-        transparent={true}
-        statusBarTranslucent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <S.ConteinerModal>
-          {myFair.map((item) => item.objectId === idFair &&
-            <S.ContentModal key={item.objectId}>
-              <S.RowClosed>
-                <AntDesign name="close" size={30} color="black" onPress={() => setModalVisible(!modalVisible)} />
-              </S.RowClosed>
-              <S.WrapperModal>
-                <S.ContentText>Nome da Feira</S.ContentText>
-                <S.ContenInput value={feira.name} onChangeText={(text) => onChange(text, "name")} />
-              </S.WrapperModal>
-              <S.WrapperModal>
-                <S.ContentText>Cidade</S.ContentText>
-                <S.ContenInput value={feira.cidade} onChangeText={(text) => onChange(text, "cidade")} />
-              </S.WrapperModal>
-              <S.WrapperModal>
-                <S.ContentText>Endereço</S.ContentText>
-                <S.ContenInput value={feira.endereco} onChangeText={(text) => onChange(text, "endereco")} />
-              </S.WrapperModal>
-              <S.WrapperModal>
-                <S.ContentText>Telefone</S.ContentText>
-                <S.ContenInput value={feira.telefone} onChangeText={(text) => onChange(text, "telefone")} />
-              </S.WrapperModal>
-              <S.WrapperModal>
-                <S.ContentText>Horario de Atendimento</S.ContentText>
-                <S.ContenInput value={feira.horario} onChangeText={(text) => onChange(text, "horario")} />
-              </S.WrapperModal>
-              <S.WrapperModal>
-                <S.ButtonForm title="Editar" onPress={() => handleEdit(item.objectId)} />
-              </S.WrapperModal>
-            </S.ContentModal>
-          )}
 
-        </S.ConteinerModal>
-
-      </Modal>
-    </S.Wrapper>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          statusBarTranslucent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <S.ConteinerModal>
+            {myFair.map((item) => item.objectId === idFair &&
+              <S.ContentModal key={item.objectId}>
+                <S.RowClosed>
+                  <AntDesign name="close" size={30} color="black" onPress={() => setModalVisible(!modalVisible)} />
+                </S.RowClosed>
+                <S.WrapperModal>
+                  <S.ContentText>Nome da Feira</S.ContentText>
+                  <S.ContenInput value={feira.name} onChangeText={(text) => onChange(text, "name")} />
+                </S.WrapperModal>
+                <S.WrapperModal>
+                  <S.ContentText>Cidade</S.ContentText>
+                  <S.ContenInput value={feira.cidade} onChangeText={(text) => onChange(text, "cidade")} />
+                </S.WrapperModal>
+                <S.WrapperModal>
+                  <S.ContentText>Endereço</S.ContentText>
+                  <S.ContenInput value={feira.endereco} onChangeText={(text) => onChange(text, "endereco")} />
+                </S.WrapperModal>
+                <S.WrapperModal>
+                  <S.ContentText>Telefone</S.ContentText>
+                  <S.ContenInput value={feira.telefone} onChangeText={(text) => onChange(text, "telefone")} />
+                </S.WrapperModal>
+                <S.WrapperModal>
+                  <S.ContentText>Horario de Atendimento</S.ContentText>
+                  <S.ContenInput value={feira.horario} onChangeText={(text) => onChange(text, "horario")} />
+                </S.WrapperModal>
+                <S.WrapperModal>
+                  <S.ButtonForm title="Editar" onPress={() => handleEdit(item.objectId)} />
+                </S.WrapperModal>
+              </S.ContentModal>
+            )}
+          </S.ConteinerModal>
+        </Modal>
+      </S.Wrapper>
+    ) : (
+      myFair === null ?
+        (
+          <View style={{ flex: 1, justifyContent: "center" }}>
+            <ActivityIndicator size="large" color="##68D391" />
+          </View>
+        ) : (
+          <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>Nenhuma Feira cadastrada</Text>
+          </View>
+        )
+    )
   )
 }

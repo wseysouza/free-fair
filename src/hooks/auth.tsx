@@ -2,8 +2,6 @@ import React, { createContext, ReactNode, useContext, useState } from "react";
 import { Alert } from 'react-native';
 import { api } from "../services/api"
 
-import tab from "../data/index.json";
-
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -74,7 +72,7 @@ const AuthContext = createContext({} as IAuthContextData)
 function AuthProvider({ children }: AuthProviderProps) {
 
   const [user, setUser] = useState<User>({} as User);
-  const [myFair, setMyfair] = useState<myFair[]>([]);
+  const [myFair, setMyfair] = useState<myFair[]>(null);
   const [userInvalid, setUserInvalid] = useState(false);
 
 
