@@ -8,9 +8,10 @@ import { useAuth } from "../../hooks/auth"
 import * as S from "./styles";
 
 export function MyFair({ navigation }: StackHeaderProps) {
-  const { Get_MyFair, myFair, DeleteFair, Put_Fair } = useAuth()
+  const { Get_MyFair, myFair, DeleteFair, Put_Fair, appStackNav } = useAuth()
   const [modalVisible, setModalVisible] = useState(false);
   const [idFair, setIdFair] = useState('');
+  const [loading, setLoading] = useState(true);
   const [feira, setFeira] = useState({
     cidade: "",
     endereco: "",
@@ -19,11 +20,10 @@ export function MyFair({ navigation }: StackHeaderProps) {
     telefone: "",
   })
 
-
-
-
   useEffect(() => {
-    Get_MyFair();
+    setLoading(true)
+    Get_MyFair()
+    setTimeout(() => setLoading(false), 4000);
   }, [])
 
   const editFair = (id) => {
@@ -84,8 +84,19 @@ export function MyFair({ navigation }: StackHeaderProps) {
     setFeira(newFeira)
   }
 
-  return (
-    myFair !== null && myFair.length > 0 ? (
+  const handleAddProduct = async (idFeira) => {
+    await appStackNav(idFeira)
+
+    navigation.navigate('ProductRegistration')
+  }
+  console.log(">>", myFair)
+
+  return loading ? (
+    <View style={{ flex: 1, justifyContent: "center" }}>
+      <ActivityIndicator size="large" color="##68D391" />
+    </View>
+  ) : (
+    myFair.length > 0 ? (
       <S.Wrapper>
         <FlatList
           data={myFair}
@@ -96,9 +107,12 @@ export function MyFair({ navigation }: StackHeaderProps) {
               <S.ColumContent>
                 <S.TitleContent>{item.name}</S.TitleContent>
                 <S.Content>{`Endereço: ${item.endereco} - ${item.cidade} `}</S.Content>
+                <S.Button onPress={() => handleAddProduct(item.objectId)}>
+                  <S.TextButton>Cadastrar Produto</S.TextButton>
+                </S.Button>
               </S.ColumContent>
-              <AntDesign name="edit" size={35} color="black" onPress={() => editFair(item.objectId)} />
-              <AntDesign style={{ marginLeft: 15 }} name="delete" size={35} color="black" onPress={() => deleteFair(item.objectId)} />
+              <AntDesign name="edit" size={35} color="gray" onPress={() => editFair(item.objectId)} />
+              <AntDesign style={{ marginLeft: 15 }} name="delete" size={35} color="gray" onPress={() => deleteFair(item.objectId)} />
             </S.Item>
           }
         />
@@ -147,16 +161,9 @@ export function MyFair({ navigation }: StackHeaderProps) {
         </Modal>
       </S.Wrapper>
     ) : (
-      myFair === null ?
-        (
-          <View style={{ flex: 1, justifyContent: "center" }}>
-            <ActivityIndicator size="large" color="##68D391" />
-          </View>
-        ) : (
-          <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>Nenhuma Feira cadastrada</Text>
-          </View>
-        )
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Nenhuma Feira cadastrada</Text>
+      </View>
     )
   )
 }

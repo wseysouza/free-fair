@@ -29,6 +29,10 @@ interface IAuthContextData {
   userInvalid: boolean;
   user: User;
   myFair: myFair[];
+  fairs: myFair[];
+  stacNav: boolean;
+  idFeira: string;
+  appStackNav: (idFeira?: string) => void
   loginUser: (data: object) => void;
   logout(): void;
   DeleteFair(id: string): void;
@@ -55,6 +59,12 @@ interface IAuthContextData {
     name: string,
     telefone: string,
   }): void;
+  registrationProduct(data: {
+    name: string,
+    precoUnitario: string,
+    unidadeM: string,
+    idFeira: string,
+  }): void;
 
 }
 
@@ -72,7 +82,10 @@ const AuthContext = createContext({} as IAuthContextData)
 function AuthProvider({ children }: AuthProviderProps) {
 
   const [user, setUser] = useState<User>(null);
+  const [stacNav, setStacNav] = useState(false);
+  const [idFeira, setIdFeira] = useState("");
   const [myFair, setMyfair] = useState<myFair[]>(null);
+  const [fairs, setFairs] = useState<myFair[]>(null);
   const [userInvalid, setUserInvalid] = useState(false);
 
 
@@ -80,7 +93,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     try {
       const { data } = await api.get("/users");
       data.results.map((item) => {
-        if (item.email.toLowerCase === user.email.toLowerCase && item.senha === user.password) {
+        if (item.email.toLowerCase() === user.email.toLowerCase() && item.senha === user.password) {
           setUser({
             id: item.objectId,
             email: item.email,
@@ -89,6 +102,7 @@ function AuthProvider({ children }: AuthProviderProps) {
             cpfCnpj: item.cpfCnpj,
           });
           setUserInvalid(false)
+          return
         } else {
           setUserInvalid(true)
         }
@@ -119,6 +133,16 @@ function AuthProvider({ children }: AuthProviderProps) {
   async function logout() {
     AsyncStorage.clear()
     setUser(null);
+    setUserInvalid(false)
+  }
+
+  async function appStackNav(idFeira = null) {
+    setIdFeira(idFeira)
+    if (!stacNav) {
+      setStacNav(true)
+    } else {
+      setStacNav(false)
+    }
   }
 
 
@@ -131,10 +155,20 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function registrationProduct(data) {
+    try {
+      await api.post("/item", data);
+    } catch (error) {
+      console.log("ERROR", error)
+    }
+  }
+
   async function Get_MyFair() {
     try {
       const { data } = await api.get("/feiras");
-      setMyfair(data.results)
+      let MyFairFilter = data.results.filter((item) => item.ID_User === user.id)
+      setMyfair(MyFairFilter)
+      setFairs(data.results)
     } catch (error) {
       console.log("ERROR", error)
     }
@@ -165,6 +199,9 @@ function AuthProvider({ children }: AuthProviderProps) {
       userInvalid,
       user,
       myFair,
+      fairs,
+      stacNav,
+      idFeira,
       loginUser,
       logout,
       createUser,
@@ -172,6 +209,8 @@ function AuthProvider({ children }: AuthProviderProps) {
       Get_MyFair,
       DeleteFair,
       Put_Fair,
+      appStackNav,
+      registrationProduct,
     }}>
       {children}
     </AuthContext.Provider>

@@ -7,8 +7,9 @@ import * as S from './styles';
 
 export function RegisterFair() {
     const [loading, setLoading] = useState(false)
-    const { registerFair } = useAuth()
+    const { registerFair, user } = useAuth()
     const [feira, setFeira] = useState({
+        ID_User: user.id,
         name: "",
         cidade: "",
         endereco: "",
@@ -20,8 +21,6 @@ export function RegisterFair() {
         newFeira[parameter] = text
         setFeira(newFeira)
     }
-
-    console.log(feira)
 
     const handleSave = () => {
         setLoading(true)
@@ -52,6 +51,7 @@ export function RegisterFair() {
             setLoading(false)
             Alert.alert('Hoje tem Feira!!!', 'Cadastro realizado com Sucesso')
             setFeira({
+                ID_User: user.id,
                 name: "",
                 cidade: "",
                 endereco: "",

@@ -6,25 +6,20 @@ export const Wrapper = styled.View`
     width: 100%;
     height: 100%;
     padding: 10px 15px;
-   
 `;
 
 export const Logo = styled.Image`
     width: 40px;
     height: 40px;
-
     border-radius: 50px;
     margin-right: 10px;
 `;
 
-export const Item = styled.View`
+export const Item = styled.Pressable`
     width: 100%;
-    
-
     flex-direction: row;
     align-items:center ;
     padding: 5px;
-
     border-bottom-width: 1px;
     border-bottom-color: gray;
 `;
@@ -51,6 +46,7 @@ export const TitleContent = styled.Text`
     font-size: 14px;
     font-weight: bold;
 `;
+
 
 export const Content = styled.Text`
     width: 100%;
@@ -85,7 +81,7 @@ export const ContenInput = styled.TextInput`
     border-Width: 1px;
     padding: 10px;
     border-radius: 6px;
-    background-color: ${({ theme }) => theme.colors.backgroundInput};;
+    background-color: ${({ theme }) => theme.colors.backgroundInput};
 `;
 
 export const ContentText = styled.Text`
@@ -110,4 +106,21 @@ export const RowClosed = styled.View`
     width: 100%;
     align-items: flex-end;
     margin-bottom: 10px;
+`;
+
+export const Button = styled.Pressable`
+    flex-direction: row;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 30px ;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    background-color: ${({ theme }) => theme.colors.loginGreen};
 `
+export const TextButton = styled.Text`
+    font-size: 14px;
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.textWhite};
+    margin-left: 10px;
+`;

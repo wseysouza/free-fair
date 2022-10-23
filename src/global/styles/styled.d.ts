@@ -28,7 +28,11 @@ declare module 'styled-components' {
 
             icon: string,
 
-            backgroundForm: string
+            backgroundForm: string,
+
+            loginGreen: string,
+
+            loginBlue: string,
         },
 
         fonts: {

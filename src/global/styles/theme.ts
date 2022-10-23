@@ -21,6 +21,10 @@ export default {
 
         buttonGreen: '#6FCF97',
 
+        loginGreen: '#68D391',
+
+        loginBlue: '#90CDF4',
+
         facebook: '#3B5998',
 
         icon: '#5F5F5F',

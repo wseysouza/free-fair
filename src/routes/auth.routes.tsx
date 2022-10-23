@@ -4,7 +4,6 @@ import 'react-native-gesture-handler';
 
 import { Login } from '../screens/Login';
 import { UserRegister } from '../screens/UserRegister';
-import { MyFair } from '../screens/MyFair';
 
 const { Navigator, Screen } = createStackNavigator();
 
