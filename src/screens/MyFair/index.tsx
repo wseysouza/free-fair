@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Alert, FlatList, Modal, ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { StackHeaderProps } from "@react-navigation/stack"
-import Logo from "../../assets/imagemFrutas.png";
+import Logo from "../../assets/camera.png";
 import { AntDesign } from '@expo/vector-icons';
 import { useAuth } from "../../hooks/auth"
 
@@ -18,12 +18,13 @@ export function MyFair({ navigation }: StackHeaderProps) {
     horario: "",
     name: "",
     telefone: "",
+    photo: ""
   })
 
   useEffect(() => {
     setLoading(true)
     Get_MyFair()
-    setTimeout(() => setLoading(false), 4000);
+    setTimeout(() => setLoading(false), 1000);
   }, [])
 
   const editFair = (id) => {
@@ -34,7 +35,8 @@ export function MyFair({ navigation }: StackHeaderProps) {
           endereco: item.endereco,
           horario: item.horario,
           name: item.name,
-          telefone: item.telefone
+          telefone: item.telefone,
+          photo: item.photo
         })
       }
     })
@@ -85,11 +87,10 @@ export function MyFair({ navigation }: StackHeaderProps) {
   }
 
   const handleAddProduct = async (idFeira) => {
-    await appStackNav(idFeira)
+    await appStackNav(idFeira, 'ProductRegistration')
 
     navigation.navigate('ProductRegistration')
   }
-  console.log(">>", myFair)
 
   return loading ? (
     <View style={{ flex: 1, justifyContent: "center" }}>
@@ -103,7 +104,7 @@ export function MyFair({ navigation }: StackHeaderProps) {
           keyExtractor={(item) => item?.objectId.toString()}
           renderItem={({ item, index }) =>
             <S.Item>
-              <S.Logo source={Logo} />
+              <S.Logo source={item.photo ? { uri: item.photo } : Logo} />
               <S.ColumContent>
                 <S.TitleContent>{item.name}</S.TitleContent>
                 <S.Content>{`Endereço: ${item.endereco} - ${item.cidade} `}</S.Content>

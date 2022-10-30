@@ -10,6 +10,7 @@ import { Home } from '../screens/Home';
 import { RegisterFair } from "../screens/RegisterFair";
 import { Most } from "../../src/screens/Most";
 import { MyFair } from "../../src/screens/MyFair";
+import { ListProducts } from "../../src/screens/ListProducts";
 
 const AppRoutes = createBottomTabNavigator();
 const ButtonsRoutes = createStackNavigator();
@@ -29,7 +30,7 @@ const AuthRoutes = () => {
         component={Home}
         options={{
           tabBarLabel: (({ color, focused }) => (
-            <Text style={{ color: focused ? '#68D391' : color, fontSize: 11 }} >Início</Text>
+            <Text style={{ color: focused ? '#68D391' : color, fontSize: 10 }} >Início</Text>
           )),
           tabBarIcon: (({ size, color, focused }) => (
             <FontAwesome5
@@ -40,12 +41,32 @@ const AuthRoutes = () => {
           ))
         }}
       />
+
+      <AppRoutes.Screen
+        name="Lista de Compras"
+        component={ListProducts}
+        options={{
+          tabBarLabel: (({ color, focused }) => (
+            <Text style={{ color: focused ? '#68D391' : color, fontSize: 10 }} >Compras</Text>
+          )),
+          tabBarIcon: (({ size, color, focused }) => (
+
+            <FontAwesome5
+              name="shopping-cart"
+              size={size}
+              color={focused ? '#68D391' : color}
+            />
+          ))
+        }}
+      />
+
+
       <AppRoutes.Screen
         name="Cadastrar Feira"
         component={RegisterFair}
         options={{
           tabBarLabel: (({ color, focused }) => (
-            <Text style={{ color: focused ? '#68D391' : color, fontSize: 11 }} >Cadastrar Feira</Text>
+            <Text style={{ color: focused ? '#68D391' : color, fontSize: 10 }} >Cadastrar Feira</Text>
           )),
           tabBarIcon: (({ size, color, focused }) => (
             <MaterialIcons
@@ -62,7 +83,7 @@ const AuthRoutes = () => {
         component={MyFair}
         options={{
           tabBarLabel: (({ color, focused }) => (
-            <Text style={{ color: focused ? '#68D391' : color, fontSize: 11 }} >Minhas Feiras</Text>
+            <Text style={{ color: focused ? '#68D391' : color, fontSize: 10 }} >Minhas Feiras</Text>
           )),
           tabBarIcon: (({ size, color, focused }) => (
             <FontAwesome5
@@ -79,7 +100,7 @@ const AuthRoutes = () => {
         component={Most}
         options={{
           tabBarLabel: (({ color, focused }) => (
-            <Text style={{ color: focused ? '#68D391' : color, fontSize: 11 }} >Mais</Text>
+            <Text style={{ color: focused ? '#68D391' : color, fontSize: 10 }} >Mais</Text>
           )),
           tabBarIcon: (({ size, color, focused }) => (
             <MaterialIcons

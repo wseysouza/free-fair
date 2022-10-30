@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
-import { MaskInputProps } from 'react-native-mask-input';
+import MaskInput from 'react-native-mask-input';
 
-export const Input = styled.TextInput<MaskInputProps>`
+export const Input = styled(MaskInput)`
     background-color: ${({ theme }) => theme.colors.textWhite};
     width: 100%;
     height: 55px;

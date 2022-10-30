@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useForm } from 'react-hook-form';
 import { StackHeaderProps } from "@react-navigation/stack"
+import * as ImagePicker from 'expo-image-picker';
 
 import * as S from "./styles"
 import { useTheme } from "styled-components/native";
@@ -8,19 +9,30 @@ import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { HeaderScreens } from "../../components/HeaderScreens"
 import { useAuth } from "../../hooks/auth"
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
 
 export function ProductRegistration({ navigation }: StackHeaderProps) {
   const { idFeira, appStackNav, registrationProduct } = useAuth()
   const { control, handleSubmit, resetField, getValues } = useForm()
   const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState("");
+
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   const theme = useTheme();
 
-  console.log(">>>", idFeira)
-
   const onSubmit = async (data: { name: string, unidadeM: string, preco: string }) => {
-    console.log()
     setLoading(true)
     if (!(data.name.length > 0)) {
       Alert.alert("Ops!", "Digite o Nome do Produto")
@@ -36,14 +48,14 @@ export function ProductRegistration({ navigation }: StackHeaderProps) {
       return
     }
 
-
-
     const product = {
       name: data.name,
       unidadeM: data.unidadeM,
-      precoUnitario: data.preco,
+      precoUnitario: data.preco.substring(3),
       idFeira: idFeira,
+      photo: image
     }
+
     try {
       registrationProduct(product);
       Alert.alert('OK', "Produto Cadastrado com sucesso");
@@ -52,6 +64,7 @@ export function ProductRegistration({ navigation }: StackHeaderProps) {
       resetField('name')
       resetField('preco')
       resetField('unidadeM')
+      setImage("")
     } catch (error) {
       console.log("test", error)
       setLoading(false)
@@ -67,6 +80,13 @@ export function ProductRegistration({ navigation }: StackHeaderProps) {
     <S.Container>
       <HeaderScreens onPress={() => handleGoBack()} />
       <S.Title>Cadastro de Produto</S.Title>
+
+      {image !== "" ? (
+        <View style={{ width: '100%', alignItems: 'center' }}>
+          <S.ImageAttached source={{ uri: image }} />
+        </View>
+      ) : null}
+
       <S.Form showsVerticalScrollIndicator={false}>
         <Input name="name" placeholder="Nome do Produto" control={control} />
         <Input name="unidadeM" placeholder="Unidade/KG" control={control} />
@@ -80,6 +100,7 @@ export function ProductRegistration({ navigation }: StackHeaderProps) {
                   <Input name="city" placeholder="Cidade" control={control} /> */}
 
 
+        <Button onPress={pickImage} color={theme.colors.facebook} title="Anexar Imagem" />
         <Button onPress={handleSubmit(onSubmit)} color={theme.colors.dark} title={loading ? "Carregando..." : "Cadastrar"} />
       </S.Form>
     </S.Container>

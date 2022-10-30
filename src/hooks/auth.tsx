@@ -14,6 +14,16 @@ interface User {
   photo?: string;
   cpfCnpj: string
 }
+interface myProducts {
+  objectId: string;
+  unidadeM: string;
+  idFeira: string;
+  name: string;
+  precoUnitario: string;
+  createdAt: string;
+  updatedAt: string;
+  photo: string
+}
 interface myFair {
   objectId: string;
   name: string;
@@ -23,16 +33,29 @@ interface myFair {
   horario: string;
   createdAt: string;
   updatedAt: string;
+  photo: string
+}
+
+interface newProd {
+  objectId: string,
+  name: string,
+  precoUnitario: string,
+  unidadeM: string,
+  idFeira: string,
+  photo: string
 }
 
 interface IAuthContextData {
   userInvalid: boolean;
   user: User;
   myFair: myFair[];
+  addProductList: newProd[];
   fairs: myFair[];
+  products: myProducts[];
   stacNav: boolean;
   idFeira: string;
-  appStackNav: (idFeira?: string) => void
+  screen: string;
+  appStackNav: (idFeira?: string, screen?: string) => void
   loginUser: (data: object) => void;
   logout(): void;
   DeleteFair(id: string): void;
@@ -44,6 +67,7 @@ interface IAuthContextData {
     telefone: string,
   }): void;
   Get_MyFair(): void;
+  Get_ProductsFair(): void;
   createUser(data: {
     idUsuario: string,
     nome: string,
@@ -58,13 +82,17 @@ interface IAuthContextData {
     horario: string,
     name: string,
     telefone: string,
+    photo: string
   }): void;
   registrationProduct(data: {
     name: string,
     precoUnitario: string,
     unidadeM: string,
     idFeira: string,
+    photo: string
   }): void;
+  addProduct(item: newProd): void;
+  removeProduct(id: ""): void;
 
 }
 
@@ -84,9 +112,12 @@ function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>(null);
   const [stacNav, setStacNav] = useState(false);
   const [idFeira, setIdFeira] = useState("");
+  const [screen, setScreen] = useState("");
   const [myFair, setMyfair] = useState<myFair[]>(null);
+  const [products, setProducts] = useState<myProducts[]>(null);
   const [fairs, setFairs] = useState<myFair[]>(null);
   const [userInvalid, setUserInvalid] = useState(false);
+  const [addProductList, setAddProductList] = useState<newProd[]>([]);
 
 
   async function loginUser(user: { email: string, password: string }) {
@@ -136,13 +167,27 @@ function AuthProvider({ children }: AuthProviderProps) {
     setUserInvalid(false)
   }
 
-  async function appStackNav(idFeira = null) {
+  async function appStackNav(idFeira = null, screen) {
     setIdFeira(idFeira)
+    setScreen(screen)
     if (!stacNav) {
       setStacNav(true)
     } else {
       setStacNav(false)
     }
+  }
+
+  async function addProduct(item: newProd) {
+    addProductList.push(item)
+    console.log("NEW", addProductList)
+  }
+
+  async function removeProduct(id: '') {
+    let removeProduct = addProductList.filter(item =>
+      item.objectId !== id
+    )
+    setAddProductList(removeProduct)
+    console.log("REMOVE", addProductList)
   }
 
 
@@ -174,6 +219,16 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function Get_ProductsFair() {
+    try {
+      const { data } = await api.get("/item");
+      let myProducts = data.results.filter((item) => item.idFeira === idFeira)
+      setProducts(myProducts)
+    } catch (error) {
+      console.log("ERROR", error)
+    }
+  }
+
   async function DeleteFair(id) {
     console.log(id)
     try {
@@ -199,18 +254,24 @@ function AuthProvider({ children }: AuthProviderProps) {
       userInvalid,
       user,
       myFair,
+      addProductList,
+      products,
       fairs,
       stacNav,
       idFeira,
+      screen,
       loginUser,
       logout,
       createUser,
       registerFair,
       Get_MyFair,
+      Get_ProductsFair,
       DeleteFair,
       Put_Fair,
       appStackNav,
       registrationProduct,
+      addProduct,
+      removeProduct,
     }}>
       {children}
     </AuthContext.Provider>

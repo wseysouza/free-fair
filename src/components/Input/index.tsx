@@ -1,6 +1,6 @@
 import React from "react";
 import { useController, UseControllerProps } from 'react-hook-form';
-import { createNumberMask } from 'react-native-mask-input';
+import { createNumberMask } from "react-native-mask-input";
 
 
 import * as S from './styles';

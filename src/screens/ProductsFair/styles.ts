@@ -5,7 +5,7 @@ export const Container = styled.View`
     height: 100%;
     background-color: ${({ theme }) => theme.colors.loginGreen};
     flex: 1;
-    padding: 60px  30px;
+    padding: 60px  20px;
 `
 
 export const Title = styled.Text`
@@ -16,13 +16,16 @@ export const Title = styled.Text`
     text-align: center;
     
 `
-export const ImageAttached = styled.Image`
-    width: 120px;
-    height: 120px;
-    border-radius: 100px;
-    margin-bottom: 15px;
-`;
 
 export const Form = styled.ScrollView`
     
 `
+
+export const Wrapper = styled.View`
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
+`;

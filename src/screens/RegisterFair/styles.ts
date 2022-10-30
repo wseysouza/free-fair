@@ -42,3 +42,9 @@ export const ButtonForm = styled.Button`
     border-radius: 6px;
 `;
 
+export const ImageAttached = styled.Image`
+    width: 120px;
+    height: 120px;
+    border-radius: 100px;
+    margin-bottom: 15px;
+`;

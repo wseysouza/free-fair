@@ -2,20 +2,21 @@ import React, { useRef, useEffect, useState } from "react";
 import { useAuth } from '../../hooks/auth';
 import * as S from "./styles";
 import { RefreshControl, FlatList, ActivityIndicator, Text, View } from 'react-native'
+import { StackHeaderProps } from "@react-navigation/stack"
 
 import SelectDropdown from 'react-native-select-dropdown';
-import Logo from "../../assets/imagemFrutas.png";
+import Logo from "../../assets/camera.png";
 
-export function Home() {
+export function Home({ navigation }: StackHeaderProps) {
   const [selectDropdom, setSelectDropdom] = useState("")
-  const { Get_MyFair, fairs, user } = useAuth()
+  const { Get_MyFair, fairs, user, appStackNav } = useAuth()
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setLoading(true)
     Get_MyFair()
-    setTimeout(() => setLoading(false), 4000);
+    setTimeout(() => setLoading(false), 1000);
   }, [])
 
 
@@ -26,6 +27,12 @@ export function Home() {
     setRefreshing(false)
   }
   console.log(selectDropdom)
+
+  const handleScreenProducts = async (idFeira) => {
+    appStackNav(idFeira, 'ProductsFair')
+
+    navigation.navigate('ProductsFair')
+  }
 
   return loading ? (
     <View style={{ flex: 1, justifyContent: "center" }}>
@@ -78,8 +85,8 @@ export function Home() {
             keyExtractor={(item) => item?.objectId.toString()}
             renderItem={({ item, index }) =>
               item.cidade === selectDropdom && (
-                <S.Item>
-                  <S.Logo source={Logo} />
+                <S.Item onPress={() => handleScreenProducts(item.objectId)}>
+                  <S.Logo source={item.photo ? { uri: item.photo } : Logo} />
                   <S.ColumContent>
                     <S.TitleContent>{item.name}</S.TitleContent>
                     <S.Content>{`Endereço: ${item.endereco}`}</S.Content>
@@ -101,8 +108,8 @@ export function Home() {
             keyExtractor={(item) => item?.objectId.toString()}
             renderItem={({ item, index }) =>
               item && (
-                <S.Item>
-                  <S.Logo source={Logo} />
+                <S.Item onPress={() => handleScreenProducts(item.objectId)}>
+                  <S.Logo source={item.photo ? { uri: item.photo } : Logo} />
                   <S.ColumContent>
                     <S.TitleContent>{item.name}</S.TitleContent>
                     <S.Content>{`Endereço: ${item.endereco}`}</S.Content>

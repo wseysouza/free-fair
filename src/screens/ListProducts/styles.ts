@@ -18,7 +18,7 @@ export const Logo = styled.Image`
     margin-right: 10px;
 `;
 
-export const Item = styled.Pressable`
+export const Item = styled.View`
     width: 100%;
 
     flex-direction: row;
