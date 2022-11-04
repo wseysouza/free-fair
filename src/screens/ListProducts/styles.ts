@@ -5,9 +5,7 @@ export const Wrapper = styled.View`
     flex: 1;
     width: 100%;
     height: 100%;
-    padding-top: 50px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 20px 25px;
 `;
 
 export const Logo = styled.Image`
@@ -56,3 +54,17 @@ export const Content = styled.Text`
     width: 100%;
     font-size: 14px;
 `;
+
+export const RowValueTotal = styled.View`
+    width: 100%;
+    
+    justify-content: space-between;
+    flex-direction: row;
+`;
+export const TextValueTotal = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+`;
+
+
