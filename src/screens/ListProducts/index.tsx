@@ -31,7 +31,11 @@ export function ListProducts({ navigation }: StackHeaderProps) {
   // }
 
   const handleWhats = () => {
-    Linking.openURL("https://api.whatsapp.com/send?phone=5551984500860&text=Oi")
+    let ListItens = "Ola, segue a Lista: ";
+    addProductList.forEach((item) => {
+      ListItens += item.name + " ,"
+    })
+    Linking.openURL(`https://api.whatsapp.com/send?phone=5551984500860&text=${ListItens}`)
   }
 
   return loading ? (
