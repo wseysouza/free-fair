@@ -31,9 +31,15 @@ export function ListProducts({ navigation }: StackHeaderProps) {
   // }
 
   const handleWhats = () => {
-    let ListItens = "Ola, segue a Lista: ";
-    addProductList.forEach((item) => {
-      ListItens += item.name + " ,"
+    let quantidade = addProductList.length;
+    let ListItens = `Ola, a quantidade de produtos são ${quantidade}, valor total R$ ${valueTotal.replace(".", ",")}, segue a Lista: `;
+    addProductList.forEach((item, index) => {
+      console.log(index)
+      if (index === (addProductList.length - 1)) {
+        ListItens += item.name + "."
+      } else {
+        ListItens += item.name + ", "
+      }
     })
     Linking.openURL(`https://api.whatsapp.com/send?phone=5551984500860&text=${ListItens}`)
   }
